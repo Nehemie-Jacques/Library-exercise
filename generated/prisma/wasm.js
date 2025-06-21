@@ -113,11 +113,57 @@ Prisma.NullTypes = {
  * Enums
  */
 
-undefined
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  userID: 'userID'
+};
+
+exports.Prisma.EmpruntsScalarFieldEnum = {
+  id: 'id',
+  empruntID: 'empruntID',
+  livreID: 'livreID',
+  userID: 'userID',
+  dateEmprunt: 'dateEmprunt',
+  dateRetour: 'dateRetour'
+};
+
+exports.Prisma.LivresScalarFieldEnum = {
+  id: 'id',
+  livreID: 'livreID',
+  titre: 'titre',
+  auteur: 'auteur',
+  description: 'description',
+  anneePublication: 'anneePublication',
+  ISBN: 'ISBN'
+};
+
+exports.Prisma.NotificationsScalarFieldEnum = {
+  id: 'id',
+  notificationID: 'notificationID',
+  userID: 'userID',
+  livreID: 'livreID',
+  message: 'message'
+};
+
+exports.Prisma.SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
 
 
 exports.Prisma.ModelName = {
-
+  User: 'User',
+  Emprunts: 'Emprunts',
+  Livres: 'Livres',
+  Notifications: 'Notifications'
 };
 
 /**

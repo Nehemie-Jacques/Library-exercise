@@ -13,3 +13,38 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  email    String @unique
+  password String
+  userID   String
+}
+
+model Emprunts {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  empruntID   String
+  livreID     String
+  userID      String
+  dateEmprunt DateTime
+  dateRetour  DateTime
+}
+
+model Livres {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  livreID          String
+  titre            String
+  auteur           String
+  description      String
+  anneePublication Int
+  ISBN             String
+}
+
+model Notifications {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  notificationID String
+  userID         String
+  livreID        String
+  message        String
+}
