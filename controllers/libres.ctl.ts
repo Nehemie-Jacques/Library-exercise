@@ -1,4 +1,3 @@
-import { Livres } from './../generated/prisma/index.d';
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 
