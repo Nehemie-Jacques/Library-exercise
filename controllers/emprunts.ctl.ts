@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import { sendEmail } from "../notification/mailService";
 
 const prisma = new PrismaClient();
 
@@ -55,6 +56,25 @@ const empruntCtl = {
                     dateRetour: new Date()
                 }
             })
+
+            const user = await prisma.user.findUnique({ where: { id: emprunt.userID } })
+
+            if (user) {
+                await sendEmail(
+                    user.email,
+                    "Livre maintenant disponible",
+                    `Le livre que vous avez emprunté (${emprunt.livreID}) est maintenant disponible`
+                )
+
+                await prisma.notifications.create({
+                    data: {
+                        notificationID: `${Date.now()}`,
+                        userID: user.id,
+                        livreID: emprunt.livreID,
+                        message: `Le livre ${emprunt.livreID} est maintenant disponible`
+                    }
+                })
+            }
     
             return res.status(200).json({ message: "Emprunt retourné avec succès", data: retour });
         } catch (error) {
