@@ -77,19 +77,19 @@ const utilisateurCtl = {
     }
   },
 
-  updateProfile: async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+  updateProfile: async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    const userId = req.user?.id;
     const { name, email, password, userID } = req.body;
 
-    if (!id) {
+    if (!userId) {
       res.status(400).json({ message: "ID manquant" });
       return;
-    }
+    } 
 
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
       const update = await prisma.user.update({
-        where: { id },
+        where: { id: userId },
         data: {
           name,
           email,
@@ -104,10 +104,10 @@ const utilisateurCtl = {
     }
   },
 
-  deleteProfile: async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+  deleteProfile: async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    const userId = req.user?.id;
     try {
-      await prisma.user.delete({ where: { id } });
+      await prisma.user.delete({ where: { id: userId } });
       res.status(200).json({ message: "Profil supprimé avec succès" });
     } catch (error) {
       res.status(500).json({ message: "Erreur serveur" });
