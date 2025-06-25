@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+/*import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { sendEmail } from "../notification/mailService";
 
@@ -98,4 +98,4 @@ const empruntCtl = {
     }
 }
 
-export default empruntCtl
+export default empruntCtl*/

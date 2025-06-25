@@ -1,4 +1,4 @@
-import cron from "node-cron";
+/*import cron from "node-cron";
 import { PrismaClient } from "@prisma/client";
 import { sendEmail } from "../notification/mailService";
 
@@ -40,4 +40,4 @@ cron.schedule("0 8 * * *", async () => {
       });
     }
   }
-});
+}); */

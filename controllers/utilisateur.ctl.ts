@@ -67,6 +67,26 @@ const utilisateurCtl = {
     }
   },
 
+  logout: async (req: Request, res: Response): Promise<void> => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      res.status(401).json({ message: "Token manquant ou invalide" })
+      return;
+    }
+
+    const token = authHeader.split("")[1];
+
+    try {
+      await prisma.tokenBlacklist.create({
+        data: { token }
+      })
+      res.status(200).json({ message: "Deconnexion accomplie, Token invalide" });
+    } catch (error) {
+      res.status(500).json({ message: "Erreur serveur" });
+    }
+  },
+
   getProfile: async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     const userId = req.user?.id;
     try {

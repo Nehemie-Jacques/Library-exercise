@@ -47,3 +47,9 @@ model Notifications {
   livreID String
   message String
 }
+
+model TokenBlacklist {
+  id String   @id @default(auto()) @map("_id") @db.ObjectId  
+  token String @unique
+  createdAt DateTime @default(now())
+}
