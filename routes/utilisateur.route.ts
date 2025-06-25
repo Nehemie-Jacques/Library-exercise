@@ -6,7 +6,7 @@ const router = Router();
 
 router.post("/signup", utilisateurCtl.signup);
 router.post("/login", utilisateurCtl.login);
-router.post("/logout", utilisateurCtl.logout);
+router.post("/logout", authenticate, utilisateurCtl.logout);
 router.get("/profile", authenticate, utilisateurCtl.getProfile);
 router.put("/profile", authenticate,  utilisateurCtl.updateProfile);
 router.delete("/profile", authenticate, utilisateurCtl.deleteProfile);

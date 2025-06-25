@@ -1,4 +1,4 @@
-/*import { Router } from "express";
+import { Router } from "express";
 import livreCtl from "../controllers/libres.ctl";
 import { authenticate } from "../middleware/auth";
 
@@ -9,4 +9,4 @@ router.post("/", authenticate, livreCtl.create)
 router.put("/:id", authenticate, livreCtl.update)
 router.delete("/:id", authenticate, livreCtl.delete)
 
-export default router;*/
+export default router;
